@@ -13,7 +13,24 @@ Then you can find the binary 'xlmcmd' in the 'bin' folder.
 
 ### Usage ###
 
-TO-DO
+```bash
+$#> bin/xlmcmd
+xmlcmd provides command line utility to interact with Stellar blockchain based on the given options as parameters.
+
+Usage:
+  xmlcmd [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  query       xmlcmd provides command line utility to query Stellar blockchain
+
+Flags:
+  -h, --help      help for xmlcmd
+  -v, --version   version for xmlcmd
+
+Use "xmlcmd [command] --help" for more information about a command.
+```
 
 ### License ###
 
