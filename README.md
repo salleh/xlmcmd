@@ -1,4 +1,5 @@
 # Stellar Horizon Command Line Utility #
+![GitHub](https://img.shields.io/github/license/salleh/xlmcmd?style=plastic)
 
 xlmcmd is a command line utility to interact with Stellar blockchain using REST Endpoint of Horizon server.
 
