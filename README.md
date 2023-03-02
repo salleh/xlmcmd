@@ -1,5 +1,5 @@
 # Stellar Horizon Command Line Utility #
-![GitHub](https://img.shields.io/github/license/salleh/xlmcmd?style=plastic)
+![GitHub](https://img.shields.io/github/license/salleh/xlmcmd?style=plastic) ![Github](https://img.shields.io/github/go-mod/go-version/salleh/xlmcmd?style=plastic)
 
 xlmcmd is a command line utility to interact with Stellar blockchain using REST Endpoint of Horizon server.
 
@@ -10,7 +10,7 @@ To compile:
 ```bash
 $#> make
 ```
-Then you can find the binary 'xlmcmd' in the 'bin' folder.
+Then you can find the binary 'xlmcmd' in the created 'bin' folder within the project's root directory.
 
 ### Usage ###
 
