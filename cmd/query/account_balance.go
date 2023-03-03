@@ -69,12 +69,6 @@ var balanceCmd = &cobra.Command{
 }
 
 func init() {
-	balanceCmd.Flags().StringVarP(
-		&assetCode,
-		"asset",
-		"a",
-		"",
-		`Asset ID/Name`)
 }
 
 func GetBalanceCmd() *cobra.Command {

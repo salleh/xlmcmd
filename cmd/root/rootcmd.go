@@ -13,7 +13,7 @@ var rootCmd = &cobra.Command{
 	Short:   "xmlcmd provides command line utility to interact with Stellar blockchain",
 	Long:    "xmlcmd provides command line utility to interact with Stellar blockchain based on the given options as parameters.",
 	Args:    cobra.MatchAll(cobra.NoArgs, cobra.OnlyValidArgs),
-	Version: "0.1.0",
+	Version: "0.1.1",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

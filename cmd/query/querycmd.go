@@ -22,6 +22,7 @@ func init() {
 		`Stellar network to connect to: public | testnet`)
 
 	queryCmd.AddCommand(GetBalanceCmd())
+	queryCmd.AddCommand(GetDetailsCmd())
 }
 
 func GetQueryCmd() *cobra.Command {
