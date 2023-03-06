@@ -1,4 +1,4 @@
-package query
+package account
 
 import (
 	"fmt"
@@ -11,20 +11,20 @@ import (
 
 var assetCode string
 
-var balanceCmd = &cobra.Command{
+var accountBalanceCmd = &cobra.Command{
 	Use:   "balance <Account ID>",
 	Short: "get account balance",
 	Args:  cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		networkFlag := cmd.Parent().PersistentFlags().Lookup("network")
-		fmt.Printf("Working on network: %v\n", networkFlag.Value)
-		if !helper.IsValidStellarNetwork(networkFlag.Value.String()) {
+		selectedNetwork := cmd.Flags().Lookup("network").Value.String()
+		fmt.Printf("Working on network: %v\n", selectedNetwork)
+		if !helper.IsValidStellarNetwork(selectedNetwork) {
 			return fmt.Errorf("invalid network name")
 		}
 
 		var client *hClient.Client
 
-		if networkFlag.Value.String() == "public" {
+		if selectedNetwork == "public" {
 			client = hClient.DefaultPublicNetClient
 		} else {
 			client = hClient.DefaultTestNetClient
@@ -58,6 +58,7 @@ var balanceCmd = &cobra.Command{
 					fmt.Printf("  - %s: %s\n", balanceAssetCode, balance.Balance)
 				}
 
+				// just in case user put native as the asset code
 				if assetCode == "native" && balanceAssetCode == "XLM" {
 					fmt.Printf("  - %s: %s\n", balanceAssetCode, balance.Balance)
 				}
@@ -69,8 +70,14 @@ var balanceCmd = &cobra.Command{
 }
 
 func init() {
+	accountBalanceCmd.Flags().StringVarP(
+		&assetCode,
+		"asset",
+		"a",
+		"",
+		`Asset Code`)
 }
 
-func GetBalanceCmd() *cobra.Command {
-	return balanceCmd
+func getAccountBalanceCmd() *cobra.Command {
+	return accountBalanceCmd
 }

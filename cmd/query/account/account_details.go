@@ -1,4 +1,4 @@
-package query
+package account
 
 import (
 	"encoding/json"
@@ -11,20 +11,20 @@ import (
 	"github.com/stellar/go/protocols/horizon"
 )
 
-var detailsCmd = &cobra.Command{
+var accountDetailsCmd = &cobra.Command{
 	Use:   "details <Account ID>",
 	Short: "get account details",
 	Args:  cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		networkFlag := cmd.Parent().PersistentFlags().Lookup("network")
-		fmt.Printf("Working on network: %v\n", networkFlag.Value)
-		if !helper.IsValidStellarNetwork(networkFlag.Value.String()) {
+		selectedNetwork := cmd.Flags().Lookup("network").Value.String()
+		fmt.Printf("Working on network: %v\n", selectedNetwork)
+		if !helper.IsValidStellarNetwork(selectedNetwork) {
 			return fmt.Errorf("invalid network name")
 		}
 
 		var client *hClient.Client
 
-		if networkFlag.Value.String() == "public" {
+		if selectedNetwork == "public" {
 			client = hClient.DefaultPublicNetClient
 		} else {
 			client = hClient.DefaultTestNetClient
@@ -49,17 +49,8 @@ var detailsCmd = &cobra.Command{
 	},
 }
 
-func init() {
-	balanceCmd.Flags().StringVarP(
-		&assetCode,
-		"asset",
-		"a",
-		"",
-		`Asset ID/Name`)
-}
-
-func GetDetailsCmd() *cobra.Command {
-	return detailsCmd
+func getAccountDetailsCmd() *cobra.Command {
+	return accountDetailsCmd
 }
 
 func printAccountDetails(account horizon.Account) {

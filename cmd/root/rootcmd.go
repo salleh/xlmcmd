@@ -13,13 +13,17 @@ var rootCmd = &cobra.Command{
 	Short:   "xmlcmd provides command line utility to interact with Stellar blockchain",
 	Long:    "xmlcmd provides command line utility to interact with Stellar blockchain based on the given options as parameters.",
 	Args:    cobra.MatchAll(cobra.NoArgs, cobra.OnlyValidArgs),
-	Version: "0.1.1",
+	Version: "0.1.2",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	// Add all child commands
+	rootCmd.PersistentFlags().StringP(
+		"network",
+		"n",
+		"public",
+		`Stellar network to connect to: public | testnet`)
 	rootCmd.AddCommand(query.GetQueryCmd())
 
 	err := rootCmd.Execute()
